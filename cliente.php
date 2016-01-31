@@ -40,6 +40,8 @@ class Cliente
 	}
 
 
+
+
 	public function inserir(){
 		$query = "INSERT INTO cliente (nome, email) VALUES(:nome, :email)";
 		$conn = $this->db->prepare($query);
@@ -53,17 +55,26 @@ class Cliente
 		$conn = $this->db->prepare($query);
 		$conn->bindValue(':id', $this->getId());
 		$conn->execute();
-		# code...
+		# code...[]
 	}
 	public function alterar(){
 		$query = " UPDATE cliente SET nome = :nome, email = :email WHERE id = :id"; 
-
 		$conn = $this->db->prepare($query);
 		$conn->bindValue(':id', $this->getId());
 		$conn->bindValue(':nome', $this->getNome());
 		$conn->bindValue(':email', $this->getEmail());
 		$conn->execute();
 	}
+	public function listar(){
+
+		$query = " SELECT * FROM cliente";
+		$conn = $this->db->prepare($query);
+		$conn->execute();
+		$res = $conn->fetchAll(\PDO::FETCH_ASSOC);
+		return $res;
+	
+	}
+
 
 }
 
