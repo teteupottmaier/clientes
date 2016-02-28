@@ -75,6 +75,17 @@ class Cliente
 	
 	}
 
+	public function getCliente(){
+
+		$query = " SELECT * FROM cliente WHERE id=:id";
+		$conn = $this->db->prepare($query);
+		$conn->bindValue(':id', $this->getId());
+		$conn->execute();
+		$res = $conn->fetch(\PDO::FETCH_ASSOC);
+		return $res;
+	
+	}
+
 
 }
 
